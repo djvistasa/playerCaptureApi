@@ -12,13 +12,13 @@ class HomeController < ApplicationController
         name: params['name'],
         surname: params['surname'],
         age: params['age'],
-        sport: ['sport'],
-        team: ['team'],
-        position: ['position'],
-        nationality: ['nationality'],
-        height: ['height'],
-        weight: ['weight'],
-        avatar: params['avatar']
+        sport: params['sport'],
+        team: params['team'],
+        position: params['position'],
+        #nationality: ['nationality'],
+        height: params['height'],
+        weight: params['weight'],
+        #avatar: params['avatar']
     )
 
     @players = Player.all
@@ -26,8 +26,7 @@ class HomeController < ApplicationController
     if player.save
       @data = {
           message: "player created succesfully",
-          success: 1,
-          players: @players
+          success: 1
       }
 
     else
@@ -37,9 +36,26 @@ class HomeController < ApplicationController
 
 
 
-    # respond_to do |format|
-    #   format.html
-    #   format.js
-    # end
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def get_players
+    @data = { success: 0, message: "Invalid request!" }
+
+    @players = Player.all
+    logger.debug(@players)
+    @data = {
+        message: "players retrieved succesfully",
+        success: 1,
+        players: @players
+    }
+    logger.debug(@data)
+    respond_to do |format|
+      format.json { render json: @data}
+      format.js
+    end
   end
 end

@@ -7,5 +7,8 @@ Rails.application.routes.draw do
   match '/sign_in' => 'authentication#sign_in', via: [:get, :post]
   ##create player
   match '/create_player' => 'home#create_player', via: [:get, :post]
+
+  ##get players
+  match '/get_players' => 'home#get_players', via: [:get, :post]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

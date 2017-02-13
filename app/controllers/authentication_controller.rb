@@ -23,10 +23,6 @@ class AuthenticationController < ApplicationController
       @data = { success: 0, message: "Invalid username or password" }
     end
 
-    logger.debug(@data)
-    logger.debug(validLogin)
-
-
     respond_to do |format|
       format.json { render json: @data}
       format.js
