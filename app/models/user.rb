@@ -2,7 +2,6 @@ class User < ApplicationRecord
 
   before_save :hash_field
 
-  logger.debug('User')
   private
   def hash_field
     p self.password

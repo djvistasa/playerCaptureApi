@@ -5,14 +5,16 @@ class AuthenticationController < ApplicationController
 
 
     username = params["username"]
-    password = params["password"]
+    password = Digest::MD5.hexdigest(params["password"])
     validLogin = false
 
-    logger.debug(User)
+    logger.debug(username)
+    logger.debug(password)
 
     User.all.each do |user|
       if user.password == password && user.username == username
         validLogin = true
+
       end
     end
 

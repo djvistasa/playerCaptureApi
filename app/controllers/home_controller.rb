@@ -34,10 +34,8 @@ class HomeController < ApplicationController
 
     end
 
-
-
     respond_to do |format|
-      format.html
+      format.json { render json: @data}
       format.js
     end
   end
